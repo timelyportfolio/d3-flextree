@@ -1,3 +1,4 @@
-/project.sublime-*
-/node_modules/
-/dist/
+.DS_Store
+build/
+node_modules
+npm-debug.log
