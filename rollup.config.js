@@ -1,10 +1,8 @@
-//import commonjs from 'rollup-plugin-commonjs';
 import resolve from 'rollup-plugin-node-resolve';
 //import eslint from 'rollup-plugin-eslint';
 //import babel from 'rollup-plugin-babel';
 
-// Rollup config to generate the d3-flextree.js bundle, that does not include
-// the d3-hierarchy dependency.
+// Rollup config to generate the d3-flextree.js bundle.
 
 
 // This config file is roughly equivalent to this command line:

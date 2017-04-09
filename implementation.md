@@ -9,7 +9,7 @@ later.
 This was my first experience with ES6 modules and with Rollup, so this
 might not be the best way to do things.
 
-*src/main.js* defines one default export: the `flextree()` function.
-
-In a D3 environment, the `flextree()` function needs to be a property of
-the global `d3` object. The file d3.js is used as an adapter for this purpose.
+*src/main.js* only has one export (the `flextree()` function), but doesn't
+use the *default* export. Instead, the function is exported with the name
+`flextree`. This facilitates it being put into the global `d3` object by
+rollup.
