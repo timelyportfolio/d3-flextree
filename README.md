@@ -1,26 +1,40 @@
 # D3 flextree plugin
 
-This is a reimplementation of the [D3 tree
-layout](https://github.com/mbostock/d3/wiki/Tree-Layout), that allows for
-variable node sizes.
+***Work in progress -- broken at the moment.***
+
+This is an enhanced version of the [D3 tree
+layout](https://github.com/d3/d3-hierarchy/blob/master/README.md#tree),
+that allows for variable node sizes.
+
+***FIXME: let's embed a demo here if possible***
 
 See the [demo](http://klortho.github.io/d3-flextree/).
 
-To use this plugin, use d3-flextree.js. See the
-[API documentation](flextree-api.md), which is an edited copy of
-the original tree layout documentation, with additions for the new features.
+
 
 ## API
 
 The **flextree** layout produces tidy node-link diagrams of trees using an
-algorithm described under "implementation", below.
+algorithm described in the [Implementation page](implementation.md).
 
-Like most other layouts, the object returned by d3.layout.tree is both an
-object and a function. That is: you can call the layout like any other function, and the layout has additional methods that change its behavior. Like other classes in D3, layouts follow the method chaining pattern where setter methods return the layout itself, allowing multiple setters to be invoked in a concise statement.
+The object returned by `d3.flextree()` is both an object and a function.
+Another way of saying that is that it's a JavaScript function that has
+methods attached to it. The methods set various properties that control
+how the layout is done. Calling the main function, and passing it the
+root node of a tree, causes it to compute the layout. See
+[demo/simple.html](demo/simple.html) for an example.
 
-<a name="tree" href="#tree">#</a> d3.layout.<b>tree</b>()
+Like other classes in D3, layouts follow the method chaining pattern where
+setter methods return the layout itself, allowing multiple setters to be
+invoked in a concise statement.
 
-Creates a new tree layout with the default settings: the default sort order is null; the default children accessor assumes each input data is an object with a children array; the default separation function uses one node width for siblings, and two node widths for non-siblings; the default size is 1×1.
+<a name="tree" href="#tree">#</a> d3.<b>flextree</b>()
+
+Creates a new tree layout with the default settings: the default sort
+order is null; the default children accessor assumes each input data is
+an object with a children array; the default separation function uses
+one node width for siblings, and two node widths for non-siblings; the
+default size is 1×1.
 
 <a name="_tree" href="#_tree">#</a> <b>tree</b>(<i>root</i>)
 <br><a name="nodes" href="#nodes">#</a> tree.<b>nodes</b>(<i>root</i>)
@@ -173,53 +187,12 @@ If *value* is specified, sets the value accessor to the specified function. If *
 
 ## Development
 
-Because I thought this might be considered as a replacement for the existing
-tree layout (it is backwards-compatible, and still runs in linear time), the
-code is in my fork of the D3 repository, [Klortho/d3](https://github.com/Klortho/d3),
-in the `flextree` branch, in two files:
-
-* src/layout/tree.js
-* test/layout/tree-test.js
-
-That fork is included here as a git submodule.
-
-To regenerate the plugin, you'll need Node.js and gulp. Follow these steps:
-
-```
-# Install gulp globally, if you haven't already:
-npm install --global gulp
-
-git clone --recursive https://github.com/Klortho/d3-flextree.git
-cd d3-flextree
-npm install
-gulp
-```
-
-Then bring up index.html and/or test/index.html in a browser, and verify the
-results.
 
 ## Packaging, etc.
 
 This is registered with bower. It will automatically pick up git tags from GitHub.
 
 
-## Implementation
-
-The existing D3 tree layout is based on an algorithm developed originally by
-Reingold and Tilford in a paper from 1981, with improvements by various others.
-The latest improvement was from a paper by Bucheim and Leipert, in 2002. The
-algorithm has been proven to run in linear time (O(n)).
-
-However, a limitation of that algorithm is that it or assumes that all of
-the nodes of the tree are the same size. This is fine for many applications,
-but others could benefit from allowing variable node sizes.
-
-In a paper from 2013, A.J. van der Ploeg enhanced the algorithm to allow for
-variable-sized nodes, while keeping its linear runtime nature. The author of
-that paper provide his algorithm as a working Java application on GitHub at
-[cwi-swat/non-layered-tidy-trees](https://github.com/cwi-swat/non-layered-tidy-trees).
-
-I adapted that code into this flextree plugin, and added a lot of tests.
 
 ## References
 

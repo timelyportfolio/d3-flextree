@@ -2,49 +2,87 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <style>
+      body {
+        margin: 20px;
+      }
+    </style>
   </head>
   <body>
 
     <svg xmlns='http://www.w3.org/2000/svg'
-         xmlns:xlink='http://www.w3.org/1999/xlink'
-         width='600' height='300'>
-      <g id='canvas' stroke='blue' fill='grey' stroke-width='2'
-         transform='translate(0, 150) scale(50)'
+         width='600' height='300'
+         border='2'>
+      <rect x='0' y='0' width='600' height='300' rx='5' ry='5'
+        fill='none' stroke='grey' stroke-width='2' />
+      <g id='canvas'
+         transform='translate(10, 150)'>
+        <!-- rect x='0' y='-50' width='100' height='100' rx='5' ry='5'/ -->
+      </g>
     </svg>
 
 
     <script src="../build/d3-flextree.js"></script>
     <script>
-   /*
       const canvas = document.getElementById('canvas');
 
-      // Function that draws a node; uses plain-vanilla JavaScript
-      function drawNode(node) {
-        const box = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        box.setAttribute('x', 10);
-        box.setAttribute('y', 10);
-        box.setAttribute('width', 100);
-        box.setAttribute('height', 50);
-        box.setAttribute('stroke', 'red');
+      // Attributes that are set with every box
+      const boxAttrs = {
+        fill: '#EEE', stroke: 'blue', 'stroke-width': 2,
+        rx: 5, ry: 5,
+      };
+
+      // Draw a node; uses plain-vanilla JavaScript
+      function drawNode(wnode) {
+        const node = wnode.data;
+        console.log('node x: ' + node.x + ', y: ' + node.y);
+        const size = nodeSize(node);
+        const box = document.createElementNS(
+          'http://www.w3.org/2000/svg', 'rect');
+        const attrs = merge({}, boxAttrs, {
+          x: node.y, y: node.x - size[0]/2 + 2.5,
+          width: size[1] - 5, height: size[0] - 5,
+        });
+        Object.keys(attrs).forEach(key =>
+          box.setAttribute(key, attrs[key]));
         canvas.appendChild(box);
       }
+
 
       // Simple tree
       const treeData0 = {
         name: 'root',
         children: [
-          {name: 'kid0'},
-          {name: 'kid1'},
-          {name: 'kid2'}
+          { name: 'kid0',
+            children: [
+              { name: 'gkid-0a' },
+              { name: 'gkid-0b' }
+          ]},
+          { name: 'kid1',
+            children: [
+              { name: 'gkid-1a' },
+              { name: 'gkid-1b' }
+          ]},
+          { name: 'kid2',
+            children: [
+              { name: 'gkid-2a' },
+              { name: 'gkid-2b' }
+          ]},
         ]
       };
 
-      // Node sizes are variable; hardcoded here.
+      // Node sizes
       const sizes = {
-        root: { x: 30, y: 90 },
-        kid0: { x: 40, y: 70 },
-        kid1: { x: 20, y: 80 },
-        kid2: { x: 50, y: 60 },
+        root: [ 30, 20 ],
+        kid0: [ 40, 70 ],
+        kid1: [ 20, 80 ],
+        kid2: [ 50, 60 ],
+        'gkid-0a': [ 50, 60 ],
+        'gkid-0b': [ 50, 60 ],
+        'gkid-1a': [ 50, 60 ],
+        'gkid-1b': [ 50, 60 ],
+        'gkid-2a': [ 50, 60 ],
+        'gkid-2b': [ 50, 60 ],
       };
 
       // Function to fetch a node's size
@@ -55,17 +93,25 @@
 
       // Create the layout engine and do the layout
       const flextree = d3.flextree;
-      const engine = flextree(); //.nodeSize(nodeSize);
+      const engine = flextree().nodeSize(nodeSize);
       const tree = engine(treeData0);
       console.log('tree: ', tree);
 
-      drawNode(tree);
- */
-      console.log('so there');
+      //drawNode(tree);
+
       // turn that into an array of nodes, and draw them
-      //const nodes = d3.flextree.hierarchy(tree).descendants();
-      //console.log('nodes: ', nodes);
-      //nodes.forEach(drawNode);
+      const nodes = d3.flextree.hierarchy(tree).descendants();
+      console.log('nodes: ', nodes);
+      nodes.forEach(drawNode);
+
+      // Helpers
+
+      // Merge a set of objects into the leftmost one
+      function merge(ref, ...obj) {
+        Object.keys(obj[0]).forEach(k => {ref[k] = obj[0][k]});
+        if (obj.length == 1) return ref;
+        return merge(...obj);
+      }
 
     </script>
   </body>
