@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+
+    <svg xmlns='http://www.w3.org/2000/svg'
+         xmlns:xlink='http://www.w3.org/1999/xlink'
+         width='600' height='300'>
+      <g id='canvas' stroke='blue' fill='grey' stroke-width='2'
+         transform='translate(0, 150) scale(50)'
+    </svg>
+
+
+    <script src="../build/d3-flextree.js"></script>
+    <script>
+   /*
+      const canvas = document.getElementById('canvas');
+
+      // Function that draws a node; uses plain-vanilla JavaScript
+      function drawNode(node) {
+        const box = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        box.setAttribute('x', 10);
+        box.setAttribute('y', 10);
+        box.setAttribute('width', 100);
+        box.setAttribute('height', 50);
+        box.setAttribute('stroke', 'red');
+        canvas.appendChild(box);
+      }
+
+      // Simple tree
+      const treeData0 = {
+        name: 'root',
+        children: [
+          {name: 'kid0'},
+          {name: 'kid1'},
+          {name: 'kid2'}
+        ]
+      };
+
+      // Node sizes are variable; hardcoded here.
+      const sizes = {
+        root: { x: 30, y: 90 },
+        kid0: { x: 40, y: 70 },
+        kid1: { x: 20, y: 80 },
+        kid2: { x: 50, y: 60 },
+      };
+
+      // Function to fetch a node's size
+      function nodeSize(node) {
+        console.log('getting size for node ' + node.name);
+        return sizes[node.name];
+      };
+
+      // Create the layout engine and do the layout
+      const flextree = d3.flextree;
+      const engine = flextree(); //.nodeSize(nodeSize);
+      const tree = engine(treeData0);
+      console.log('tree: ', tree);
+
+      drawNode(tree);
+ */
+      console.log('so there');
+      // turn that into an array of nodes, and draw them
+      //const nodes = d3.flextree.hierarchy(tree).descendants();
+      //console.log('nodes: ', nodes);
+      //nodes.forEach(drawNode);
+
+    </script>
+  </body>
+</html>

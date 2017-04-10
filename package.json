@@ -26,8 +26,7 @@
     "prepublish": "npm run test && uglifyjs build/d3-flextree.js -c -m -o build/d3-flextree.min.js",
     "postpublish": "zip -j build/d3-flextree.zip -- LICENSE README.md build/d3-flextree.js build/d3-flextree.min.js"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-preset-es2015-rollup": "^3.0.0",
     "chai": "^3.5.0",
