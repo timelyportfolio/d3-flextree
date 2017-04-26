@@ -19,8 +19,8 @@ algorithm described in the [Implementation page](implementation.md).
 
 When called, `d3.flextree()` returns a function object that has
 methods attached to it. The methods set various parameters that control
-how the tree layout is done. Calling the main function, and passing it the
-root node of a tree, causes it to compute the layout. See
+how the tree layout is done. The function itself, when called with the
+root node of a tree, computes the layout. See
 [demo/simple.html](demo/simple.html) for an example.
 
 Like other classes in D3, layouts follow the method chaining pattern where
@@ -120,8 +120,6 @@ function separation(a, b) {
   return a.parent == b.parent ? 1 : 2;
 }
 ```
-
-The separation property is exclusive with [tree.spacing](#spacing); setting tree.separation sets tree.spacing to null.
 
 A variation that is more appropriate for radial layouts reduces the separation gap proportionally to the radius:
 

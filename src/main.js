@@ -33,7 +33,7 @@ export function flextree() {
   // - spacing - returns edge-to-edge distance in the same units as
   //   node sizes
   var separation = defaultSeparation;
-  var spacing = function(a, b) { return 0; };
+  var spacing = (a, b) => 0;
   var size = [1, 1];    // xSize, ySize
   var nodeSize = null;
   var setNodeSizes = false;
