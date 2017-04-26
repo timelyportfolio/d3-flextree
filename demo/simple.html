@@ -30,7 +30,7 @@
       // Draw a node; uses plain JavaScript
       function drawNode(wnode) {
         const node = wnode.data;
-        const size = nodeSize(node);
+        const size = node.size;
         const box = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
         const attrs = merge({}, boxAttrs, {
           x: node.y,
@@ -41,8 +41,7 @@
         Object.keys(attrs).forEach(key => box.setAttribute(key, attrs[key]));
         canvas.appendChild(box);
       }
-
-
+      
       // Simple tree
       const treeData0 = {
         name: 'root',
