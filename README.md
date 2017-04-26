@@ -17,10 +17,9 @@ See the [demo](http://klortho.github.io/d3-flextree/).
 The **flextree** layout produces tidy node-link diagrams of trees using an
 algorithm described in the [Implementation page](implementation.md).
 
-The object returned by `d3.flextree()` is both an object and a function.
-Another way of saying that is that it's a JavaScript function that has
-methods attached to it. The methods set various properties that control
-how the layout is done. Calling the main function, and passing it the
+When called, `d3.flextree()` returns a function object that has
+methods attached to it. The methods set various parameters that control
+how the tree layout is done. Calling the main function, and passing it the
 root node of a tree, causes it to compute the layout. See
 [demo/simple.html](demo/simple.html) for an example.
 

@@ -77,7 +77,6 @@ tape("computes a simple tree layout", function(test) {
 tape('can handle an empty children array on root', function(test) {
   const engine = flextree();
   const tree = engine(treeData[1]);
-  //console.log('tree: ', tree);
   test.deepEqual(tree,
     { name: "root", depth: 0, x:0.5, y: 0, children: [] }
   );
@@ -87,7 +86,7 @@ tape('can handle an empty children array on root', function(test) {
 tape('can handle an empty children array on children', function(test) {
   const engine = flextree();
   const tree = engine(treeData[2]);
-  console.log('tree: ' + util.inspect(tree, {depth: 10}));
+  //console.log('tree: ' + util.inspect(tree, {depth: 10}));
   test.deepEqual(tree,
     { name: 'root', x: 0.5, y: 0, depth: 0,
       children: [
@@ -106,6 +105,7 @@ tape('can handle an empty children array on children', function(test) {
 tape('can layout a tree, all defaults', function(test) {
   const engine = flextree();
   const tree = engine(treeData[3]);
+  console.log(util.inspect(tree, {depth: 7}));
   checkLayout(test, tree, {
     root: { x: 0.55, y: 0 },
     long: { x: 0.3, y: 0.5 },

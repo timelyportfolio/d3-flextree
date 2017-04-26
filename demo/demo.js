@@ -10,8 +10,6 @@ $(document).ready(function() {
       });
   }
 
-
-
   var test_cases,
       test_case,
       test_case_num,
@@ -22,7 +20,7 @@ $(document).ready(function() {
     .then(function(_test_cases) {
       test_cases = _test_cases;
 
-      console.log("%o", test_cases);
+      //console.log("%o", test_cases);
 
       // which test?
       var m = document.location.href.match(/.*?\?(.*)/);
@@ -46,7 +44,7 @@ $(document).ready(function() {
       return getJSON("test/cases/" + test_case.tree);
     })
     .then(function(tree) {
-      console.log("tree = %o", tree);
+      //console.log("tree = %o", tree);
 
 
       // gap
@@ -58,7 +56,7 @@ $(document).ready(function() {
       }
       else if (test_case.gap == "spacing-custom") {
         engine.spacing(function(a, b) {
-          return a.parent == b.parent ? 
+          return a.parent == b.parent ?
             0 : engine.rootXSize();
         })
       }
@@ -88,8 +86,8 @@ $(document).ready(function() {
 
       var last_id = 0;
       var node = svg_g.selectAll(".node")
-          .data(nodes, function(d) { 
-            return d.id || (d.id = ++last_id); 
+          .data(nodes, function(d) {
+            return d.id || (d.id = ++last_id);
           })
         .enter().append("g")
           .attr("class", "node")
@@ -140,16 +138,16 @@ $(document).ready(function() {
       });
       var area_ave = area_sum / nodes.length;
       // scale such that the average node size is 400 px^2
-      console.log("area_ave = " + area_ave);
+      //console.log("area_ave = " + area_ave);
       var scale = test_case.name == "flare" ? 1 : 80 / Math.sqrt(area_ave);
-      console.log("extents = %o", {
+      //console.log("extents = %o", {
         xmin: xmin, ymin: ymin, xmax: xmax, ymax: ymax,
       });
-      console.log("scale = " + scale);
+      //console.log("scale = " + scale);
 
       // Functions to get the derived svg coordinates given the tree node
       // coordinates.
-      // Note that the x-y orientations between the svg and the tree drawing 
+      // Note that the x-y orientations between the svg and the tree drawing
       // are reversed.
 
       function svg_x(node_y) { return (node_y - ymin) * scale; }
@@ -170,15 +168,15 @@ $(document).ready(function() {
       function rand() {
         return 80 + Math.floor(Math.random() * 100);
       }
-      var filler = test_case.name != "flare" 
+      var filler = test_case.name != "flare"
           ? function() {
               return "fill: rgb(" + rand() + "," + rand() + "," + rand() + ")";
             }
           : "fill: none";
-  
+
       // Reposition everything according to the layout
-      node.attr("transform", function(d) { 
-          return "translate(" + svg_x(d.y) + "," + svg_y(d.x) + ")"; 
+      node.attr("transform", function(d) {
+          return "translate(" + svg_x(d.y) + "," + svg_y(d.x) + ")";
         })
         .append("rect")
           .attr("data-id", function(d) {
@@ -186,16 +184,16 @@ $(document).ready(function() {
           })
           .attr({
             x: 0,
-            y: function(d) { 
-              return -(d.x_size * scale - nodebox_vertical_margin) / 2; 
+            y: function(d) {
+              return -(d.x_size * scale - nodebox_vertical_margin) / 2;
             },
             rx: 6,
             ry: 6,
-            width: function(d) { 
+            width: function(d) {
               return d.y_size * scale - nodebox_right_margin;
             },
-            height: function(d) { 
-              return d.x_size * scale - nodebox_vertical_margin; 
+            height: function(d) {
+              return d.x_size * scale - nodebox_vertical_margin;
             },
             style: filler,
           })
@@ -209,12 +207,12 @@ $(document).ready(function() {
         .source(function(d, i) {
           var s = d.source;
           return {
-            x: s.x, 
+            x: s.x,
             y: s.y + s.y_size - nodebox_right_margin/scale,
           };
         })
-        .projection(function(d) { 
-          return [svg_x(d.y), svg_y(d.x)]; 
+        .projection(function(d) {
+          return [svg_x(d.y), svg_y(d.x)];
         })
       ;
 

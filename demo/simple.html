@@ -32,16 +32,17 @@
         rx: 5, ry: 5,
       };
 
-      // Draw a node; uses plain-vanilla JavaScript
+      // Draw a node; uses plain JavaScript
       function drawNode(wnode) {
         const node = wnode.data;
-        console.log('node x: ' + node.x + ', y: ' + node.y);
+        //console.log('node x: ' + node.x + ', y: ' + node.y);
         const size = nodeSize(node);
-        const box = document.createElementNS(
-          'http://www.w3.org/2000/svg', 'rect');
+        const box = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
         const attrs = merge({}, boxAttrs, {
-          x: node.y, y: node.x - size[0]/2 + 2.5,
-          width: size[1] - 5, height: size[0] - 5,
+          x: node.y,
+          y: node.x - size[0]/2 + 2.5,
+          width: size[1] - 5,
+          height: size[0] - 5,
         });
         Object.keys(attrs).forEach(key =>
           box.setAttribute(key, attrs[key]));
@@ -75,33 +76,39 @@
       const sizes = {
         root: [ 30, 20 ],
         kid0: [ 40, 70 ],
-        kid1: [ 20, 80 ],
-        kid2: [ 50, 60 ],
         'gkid-0a': [ 50, 60 ],
-        'gkid-0b': [ 50, 60 ],
+        'gkid-0b': [ 50, 100 ],
+        kid1: [ 20, 140 ],
         'gkid-1a': [ 50, 60 ],
         'gkid-1b': [ 50, 60 ],
+        kid2: [ 50, 60 ],
         'gkid-2a': [ 50, 60 ],
         'gkid-2b': [ 50, 60 ],
       };
 
       // Function to fetch a node's size
       function nodeSize(node) {
+        const size = sizes[node.name];
+      /*
+        console.log('nodeSize(' + node.name + '), returning ' +
+          size[0] + ", " + size[1]);
         console.log('getting size for node ' + node.name);
+      */
         return sizes[node.name];
       };
 
       // Create the layout engine and do the layout
       const flextree = d3.flextree;
       const engine = flextree().nodeSize(nodeSize);
+      engine.spacing(function(a, b) { return 0; });;
       const tree = engine(treeData0);
-      console.log('tree: ', tree);
+      //console.log('tree: ', tree);
 
       //drawNode(tree);
 
       // turn that into an array of nodes, and draw them
       const nodes = d3.flextree.hierarchy(tree).descendants();
-      console.log('nodes: ', nodes);
+      //console.log('nodes: ', nodes);
       nodes.forEach(drawNode);
 
       // Helpers
