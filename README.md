@@ -8,8 +8,18 @@ that allows for variable node sizes.
 
 ***FIXME: let's embed a demo here if possible***
 
-See the [demo](http://klortho.github.io/d3-flextree/).
+See the [demo](http://klortho.github.io/d3-flextree/).;
 
+Tests:
+
+* First get existing test.js working
+    * Improve index.html/demo.js so that they can render any of the
+      test trees.
+
+
+* Dispose of these settings:
+
+* 
 
 
 ## API

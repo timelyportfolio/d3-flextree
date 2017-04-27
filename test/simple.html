@@ -7,6 +7,7 @@
     </style>
   </head>
   <body>
+    <div id='content'></div>
     <svg xmlns='http://www.w3.org/2000/svg'
          width='600' height='300' border='2'>
       <rect x='0' y='0' width='600' height='300' rx='5' ry='5'
@@ -78,7 +79,7 @@
       // Create the layout engine and do the layout
       const flextree = d3.flextree;
       const engine = flextree().nodeSize(node => node.size);
-      engine.spacing(function(a, b) { return 0; });;
+      engine.spacing(function(a, b) { return 0; });
       const tree = engine(treeData0);
 
       // turn that into an array of nodes, and draw them

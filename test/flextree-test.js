@@ -10,6 +10,7 @@ require('tape-chai');
 
 tape("flextree() exports what it should.", function(test) {
   test.isFunction(flextree);
+  assertEqual(3, (a -> 6/2)(5));
 
   const tree = flextree();
   test.isFunction(tree);

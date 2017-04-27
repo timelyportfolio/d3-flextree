@@ -2,8 +2,8 @@
 
 Tests are defined in tests.json.  
 
-The format of the tests.json file is an array of objects, where each object defines
-a test, as follows:
+The tests.json file comprises an array of test-definition objects, which
+each have some of these properties.
 
 - name - the name of the test. This is also used as the basis of the name of the
   JSON file with the expected results. E.g. the expected results for "test01" are
