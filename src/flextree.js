@@ -4,7 +4,7 @@ import {hierarchy} from "d3-hierarchy";
 // Node-link tree diagram using the Reingold-Tilford "tidy" algorithm,
 // as improved by A.J. van der Ploeg, 2013, "Drawing Non-layered Tidy
 // Trees in Linear Time".
-function flextree() {
+export default function()  {
 
     // The spacing between nodes can be specified in one of two ways:
     // - separation - returns center-to-center distance

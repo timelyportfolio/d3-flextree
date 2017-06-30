@@ -20,15 +20,16 @@
   },
   "homepage": "https://github.com/neptunjs/d3-flextree#readme",
   "scripts": {
-    "pretest": "rm -rf build && mkdir build && rollup -c",
+    "pretest": "rm -rf build && mkdir build && rollup -g d3-hierarchy:d3 -f umd -n d3 -o build/d3-flextree.js -- index.js",
     "prepublish": "uglifyjs build/d3-flextree.js -c -m -o build/d3-flextree.min.js",
     "postpublish": "zip -j build/d3-flextree.zip -- LICENSE README.md build/d3-flextree.js build/d3-flextree.min.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "d3-hierarchy": "^1.1.5"
+  },
   "devDependencies": {
     "babel-preset-es2015-rollup": "^3.0.0",
     "chai": "^3.5.0",
-    "d3-hierarchy": "^1.1.4",
     "debug": "^2.6.3",
     "rollup": "0.27",
     "rollup-plugin-babel": "^2.7.1",
