@@ -7,7 +7,7 @@
     // Node-link tree diagram using the Reingold-Tilford "tidy" algorithm,
     // as improved by A.J. van der Ploeg, 2013, "Drawing Non-layered Tidy
     // Trees in Linear Time".
-    function flextree$1()  {
+    function flextree()  {
 
         // The spacing between nodes can be specified in one of two ways:
         // - separation - returns center-to-center distance
@@ -382,9 +382,7 @@
         return a.parent === b.parent ? 1 : 2;
     }
 
-    module.exports = flextree;
-
-    exports.flextree = flextree$1;
+    exports.flextree = flextree;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

@@ -378,5 +378,3 @@ export default function()  {
 function defaultTreeSeparation(a, b) {
     return a.parent === b.parent ? 1 : 2;
 }
-
-module.exports = flextree;
